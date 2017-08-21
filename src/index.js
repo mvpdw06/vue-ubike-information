@@ -1,10 +1,47 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+import styles from './index.css';
+
 var vm = new Vue({
   el: '#app',
   data: {
-    ubikeStops: []
+    ubikeStops: [],
+    searchStep: '',
+    countOfPage: 25,  // 每一頁有幾筆
+    currPage: 1,      // 目前所在頁數
+  },
+  computed: {
+    totalPage () {
+      // 計算總頁數，無條件進位
+      return Math.ceil(this.ubikeStops.length / this.countOfPage);
+    },
+    pageStart () {
+      // 計算目前頁數的起始索引
+      return (this.currPage - 1) * this.countOfPage;
+    },
+    filteredStepsByName () {
+      return this.ubikeStops.filter((step) => {
+        return step.sna.indexOf(this.searchStep) > -1; 
+      })
+    },
+    filteredStepsByPage () {
+      if (this.searchStep) {
+        return this.filteredStepsByName;
+      }
+      return this.ubikeStops.slice(this.pageStart, this.pageStart + this.countOfPage)
+    }
+  },
+  methods: {
+    getData: async function(url) {
+      const response = await axios.get('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.gz');
+      this.ubikeStops = Object.keys(response.data.retVal).map((key) => response.data.retVal[key]);
+    },
+    setPage (page) {
+      // 指定目前頁數
+      if (page <= 0 || page > this.totalPage) { return; }
+      this.currPage = page;
+    }
   },
   filters: {
     timeFormat(t) {
@@ -29,14 +66,6 @@ var vm = new Vue({
     // sbi：場站目前車輛數量、 sarea：場站區域(中文)、 mday：資料更新時間、
     // lat：緯度、 lng：經度、 ar：地(中文)、 sareaen：場站區域(英文)、
     // snaen：場站名稱(英文)、 aren：地址(英文)、 bemp：空位數量、 act：全站禁用狀態
-
-    axios
-      .get('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.gz')
-      .then(res => {
-        // 將 json 轉陣列後存入 this.ubikeStops
-        this.ubikeStops = Object.keys(res.data.retVal).map(
-          key => res.data.retVal[key]
-        )
-      })
+    this.getData('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.gz')
   }
 })

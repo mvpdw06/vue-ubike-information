@@ -34,16 +34,17 @@ const getPluginsSetting = () => {
 }
 const getEntrySetting = () => {
     const entry = [
-        path.join(__dirname, '../src/index')
+      'babel-polyfill',
+      path.join(__dirname, '../src/index')
     ];
     if (isDevEnv) {
-        entry.push.apply(
-            entry,
-            [
-                'webpack/hot/only-dev-server',
-                'webpack-dev-server/client?http://localhost:9000'
-            ]
-        );
+      entry.push.apply(
+        entry,
+        [
+          'webpack/hot/only-dev-server',
+          'webpack-dev-server/client?http://localhost:9000'
+        ]
+      );
     }
     return entry;
 }
@@ -55,6 +56,10 @@ const webpackConfig = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: [/node_modules/]
+            },
+            {
+              test: /\.css$/, 
+              loader: 'style-loader!css-loader'
             }
         ]
     },

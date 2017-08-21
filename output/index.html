@@ -7,17 +7,18 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-  <style>
-    body{ padding: 1em;  }
-  </style>
-
 </head>
 <body>
 
   <h1>YouBike 臺北市公共自行車即時資訊</h1>
 
   <div id="app">
-
+    <ul>
+      <li>搜尋站場名稱：<input type="text" 
+                              v-model.trim="searchStep" 
+                              />
+      </li>
+    </ul>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -30,24 +31,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="s in ubikeStops">
-          <td>{{ s.sno }}</td>
-          <td>{{ s.sna }}</td>
-          <td>{{ s.sarea }}</td>
-          <td>{{ s.sbi }}</td>
-          <td>{{ s.tot }}</td>
-          <td>{{ s.mday | timeFormat }}</td>
+        <tr v-for="step in filteredStepsByPage">
+          <td>{{ step.sno }}</td>
+          <td>{{ step.sna }}</td>
+          <td>{{ step.sarea }}</td>
+          <td>{{ step.sbi }}</td>
+          <td>{{ step.tot }}</td>
+          <td>{{ step.mday | timeFormat }}</td>
         </tr>
       </tbody>
 
     </table>
 
+    <!--Pager -->
+    <div v-if="!searchStep">
+      <ul class="pagination">
+        <li :class="{'disabled': (currPage === 1)}" @click.prevent="setPage(currPage-1)">
+          <a href="#">&laquo; Prev</a></li>
+
+        <li v-for="n in totalPage" :class="{'active': (currPage === (n))}" @click.prevent="setPage(n)">
+          <a href="#">{{n}}</a></li>
+
+        <li :class="{'disabled': (currPage === totalPage)}" @click.prevent="setPage(currPage+1)">
+          <a href="#">Next</a></li>
+      </ul>
+      <h3 v-once>分頁：{{countOfPage}} 筆</h3>
+    </div>
+  
   </div>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="scripts.js"></script> -->
   <script src="/assets/app.js"></script>
-
 </body>
 </html>
