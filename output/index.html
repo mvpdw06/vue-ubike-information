@@ -14,9 +14,14 @@
 
   <div id="app">
     <ul>
-      <li>搜尋站場名稱：<input type="text" 
-                              v-model.trim="searchStep" 
-                              />
+      <li>
+        倒數計時：{{currentTimer}}
+      </li>
+      <li>
+        搜尋場站名稱：<input type="text" v-model.trim="searchStep" />
+      </li>
+      <li>
+          <input type="checkbox" v-model="onlyGraterThan50Percent" />只顯示車輛充足場站
       </li>
     </ul>
     <table class="table table-striped">

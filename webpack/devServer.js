@@ -11,6 +11,7 @@ const server = new webpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   historyApiFallback: true,
   hot: true,
+  inline: true,
   stats: {
     chunks: false,
     colors: true
