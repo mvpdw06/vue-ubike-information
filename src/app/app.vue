@@ -77,7 +77,7 @@
         </li>
       </ul>
       
-      <h3 v-once>每頁：{{countOfPage}} 筆，共：{{connectFiltersResult.length}} 筆</h3>
+      <h3>每頁：{{countOfPage}} 筆，共：{{connectFiltersResult.length}} 筆</h3>
     </div>
 
   </div>
