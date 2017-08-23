@@ -12,11 +12,11 @@ Vue 課程作業範例: http://kuro.tw/vue-ubike-information/
 - [x] Async / Await
 - [x] Vue loader
 - [x] Vue hot reload
+- [x] refactor for compose filters.
 - [x] 分頁
 - [x] 顯示充足場站
 - [x] 自動更新資料
 - [x] 一般名稱過濾
+- [x] 可用車輛少於比例 20% 預警 >>> 以紅色顯示
+- [x] 分區過濾
 - [ ] 進階過濾名稱
-- [ ] 分區過濾
-- [ ] 可用車輛預警
-- [ ] 可用車輛比例預警
