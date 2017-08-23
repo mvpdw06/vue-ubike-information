@@ -3,6 +3,9 @@ YouBike 臺北市公共自行車即時資訊
 
 Vue 課程作業範例: http://kuro.tw/vue-ubike-information/
 
+## 完成 demo
+
+[https://mvpdw06.github.io/vue-ubike-information/](https://mvpdw06.github.io/vue-ubike-information/)
 
 ## 目標
 
