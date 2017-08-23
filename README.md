@@ -19,4 +19,7 @@ Vue 課程作業範例: http://kuro.tw/vue-ubike-information/
 - [x] 一般名稱過濾
 - [x] 可用車輛少於比例 20% 預警 >>> 以紅色顯示
 - [x] 分區過濾
-- [ ] 進階過濾名稱
+- [x] 結合 Google Map Url
+- [x] 查無資料
+- [x] 欄位排序
+- [x] 進階過濾名稱
