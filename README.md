@@ -10,6 +10,8 @@ Vue 課程作業範例: http://kuro.tw/vue-ubike-information/
 - [x] Webpack-dev-server
 - [x] Css-loader and Style-loader
 - [x] Async / Await
+- [x] Vue loader
+- [x] Vue hot reload
 - [x] 分頁
 - [x] 顯示充足場站
 - [x] 自動更新資料
